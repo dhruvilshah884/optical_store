@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Contact Details</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+    
+
+</head>
+<body>
+    <div class="container">
+      <h2 class="display-4">Contact Details</h2>
+      <% if (data) { %>
+        <ul class="list-group">
+          <li class="list-group-item"><span class="text-secondary">Full Name:</span> <%= data.fullName %></li>
+          <li class="list-group-item"><span class="text-secondary">Email:</span> <%= data.email %></li>
+          <li class="list-group-item"><span class="text-secondary">Subject:</span> <%= data.subject %></li>
+          <li class="list-group-item"><span class="text-secondary">Message:</span> <%= data.message %></li>
+          <li class="list-group-item"><span class="text-secondary">Date:</span> <%= data.date.toLocaleDateString() %></li>
+        </ul>
+      <% } else { %>
+        <p class="alert alert-danger">No contact found with this ID.</p>
+      <% } %>
+      <a href="/contactreport" class="btn btn-primary mt-3">Go Back</a>
+    </div>
+  </body>
+</html>

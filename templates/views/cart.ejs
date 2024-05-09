@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Cart</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+    <style>
+        /* CSS for decrease button */
+    .decrease {
+        background-color: #ff6666;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    /* CSS for increase button */
+    .increase {
+        background-color: #66cc66;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    </style>
+
+</head>
+
+<body>
+    <!-- ==============header start================= -->
+    <%- include('../partials/header') %>
+        <!-- =====================header end===================== -->
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light py-5">
+            <div class="container">
+                <div class="row text-secondary">
+                    <div class="col-sm-6">
+                        <h3 class="mb-2 text-secondary">Cart</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="/"><i
+                                            class="fas fa-home me-1"></i>Home</a></li>
+
+                                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+        <!--==================== Cart Section Start ====================-->
+        
+            <table class="shop_table cart">
+                <tr>
+                    <th class="product-thumbnail">&nbsp;</th>
+                    <th class="product-name">Product</th>
+                    <th class="product-price">Price</th>
+                    <th class="product-quantity text-center">Quantity</th>
+                    <th class="product-subtotal"></th>
+                    <th class="product-remove">&nbsp;</th>
+                </tr>
+                <!-- dynamic data start  -->
+                <% let totalPrice = 0 %>
+                <% cartItem.forEach((data) => { %>
+                <tr class="woocommerce-cart-form__cart-item cart_item">
+                    <td class="product-thumbnail">
+                        <a><img src="/uploads/<%= data.product.product_image1 %>" alt="Product image"></a>
+                    </td>
+                    <td class="product-name">
+                        <a href="view/<%= data.product._id %>"><%= data.product.product_name %></a>
+                    </td>
+                    <td class="product-price">
+                        <span><bdi><span>₹</span><%= data.product.product_price %></bdi></span>
+                    </td>
+                    <!-- Quantity area  -->
+
+                    <td class="product-quantity">
+                        <div class="quantity d-flex">
+                            <form action="/decrease" method="post" class="mt-2 ms-3">
+                                <input type="hidden" name="productID" value="<%= data.product._id %>">
+                                <button type="submit" class="decrease me-1" name="action" value="decrease">-</button>
+                            </form>
+                            <input type="number" style="margin-top: 5px;" name="quantity" value="<%= data.quantity %>" min="1" readonly>
+                            <form action="/increase" method="post" class="mt-2">
+                                <input type="hidden" name="productID" value="<%= data.product._id %>">
+                                <button type="submit" class="increase ms-1" name="action" value="increase">+</button>
+                            </form>
+                        </div>
+                    </td>
+                    
+                    <!-- Quantity area  -->
+                    <td class="product-remove">
+                        <form action="/removeProduct" method="post">
+                            <input type="hidden" name="productID" value="<%= data.product._id %>">
+                            <input type="submit" value="Remove">
+                        </form>
+                    </td>
+                </tr>
+                <% let total = data.product.product_price * data.quantity  %>
+                <% totalPrice += total %>
+                <% }) %>
+                <!-- dynamic data end  -->
+                <tr>
+                    <td colspan="6">
+                        <h3 class="text-end">Total Bill:- <span><%= totalPrice %>₹</span></h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="actions">
+                        <div class="coupon">
+                            <label for="coupon_code">Coupon:</label>
+                            <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
+                            <button type="submit" class="button" name="apply_coupon" value="Apply coupon">Apply coupon</button>
+                        </div>
+                        
+                        <% let email = req.session.user.email%>
+                        <% let pub_key = 'pk_test_51P93FaSFBSE2Xlqfn1veDH4ulBSeVR7Zoy4oXyNAcuce4RdH1gOnBOMmAmOJ6NlDTNc2DTd027RAufC4fnMevA7400Yykjd1dc' %>
+                            <form action="/payment" method="post">
+                                <a href="/shop" class="color-primary" style="margin-right: 10px;">Continue Shopping</a>
+                            <!-- <a href="/checkout"><button class="button" name="update_cart" value="Update cart">Proceed to checkout</button></a> -->
+                            <!-- payment user  -->
+                            <% cartItem.forEach((data) => { %>
+
+                                <input type="hidden" name="products[]" value="<%= data.product._id %>">
+                                <input type="hidden" name="productNames[]" value="<%= data.product.product_name %>">
+                                <input type="hidden" name="productQuantities[]" value="<%= data.quantity %>">
+                                <!-- <input type="hidden" name="images[]" value="https://localhost:5000/uploads/<%= data.product.product_image1 %>"> -->
+                                
+                                <% }) %>
+
+                                <input type="hidden" name="userID" value="<%= user._id%>">
+                                <input type="hidden" name="amount" value="<%= totalPrice %>">
+                                <input type="hidden" name="pub_key" value="<%= pub_key%>">
+                                <input type="hidden" name="email" value="<%= email%>">
+                                
+                                <button class="button" name="update_cart" value="Update cart">Proceed to checkout</button>
+                            <!-- payment user  -->
+                            </form>
+                        
+                    </td>
+                </tr>
+            </table>
+        
+
+        <!--==================== Cart Section End ====================-->
+
+
+         <!-- ============ footer start ======================= -->
+         <%- include('../partials/footer') %>
+         <!-- ================= footer end ====================== -->
+
+         <!-- Include Scripts -->
+         <script src="/js/jquery.min.js"></script>
+         <script src="/js/greensock.js"></script>
+         <script src="/js/layerslider.transitions.js"></script>
+         <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+         <script src="/js/popper.min.js"></script>
+         <script src="/js/bootstrap.min.js"></script>
+         <script src="/js/owl.carousel.min.js"></script>
+         <script src="/js/wow.js"></script>
+         <script src="/js/jquery.fancybox.min.js"></script>
+         <script src="/js/jquery.countdown.js"></script>
+         <script src="/js/paraxify.js"></script>
+         <script src="/js/custom.js"></script>
+
+         <!-- Initializing the slider -->
+         <script>
+             $(document).ready(function () {
+                 $('#slider').layerSlider({
+                     sliderVersion: '6.0.0',
+                     type: 'responsive',
+                     responsiveUnder: 0,
+                     maxRatio: 1,
+                     hideUnder: 0,
+                     hideOver: 100000,
+                     skin: 'v6',
+                     navStartStop: false,
+                     skinsPath: '/skins/',
+                     height: 960
+                 });
+             });
+
+             
+
+           
+         </script>
+
+         
+
+
+
+</body>
+
+</html>

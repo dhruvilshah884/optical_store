@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Contact Us</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+
+
+</head>
+
+<body>
+    <!-- ==============header start================= -->
+    <%- include('../partials/header') %>
+        <!-- =====================header end===================== -->
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light overlay-dark py-5"
+            style="background-image: url(images/background/4.png); background-position: center center; background-size: cover;">
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-12">
+                        <h3 class="mb-2 text-primary">Contact Us</h3>
+                    </div>
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+         <!--==================== Map Section Start ====================-->
+         <div class="full-row p-0">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="map" style="height: 500px; width: 100%; overflow: hidden;"></div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Map Section End ====================-->
+
+        <!--==================== Contact Section Start ====================-->
+        <div class="full-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 col-md-7">
+                        <h3 class="down-line mb-5">Send Message</h3>
+                        <div class="form-simple mb-5">
+                            <form id="contact-form" action="/contact" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label>Full Name:</label>
+                                            <input type="text" class="form-control bg-gray" name="fullName" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label>Your Email:</label>
+                                            <input type="email" class="form-control bg-gray" name="email" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label>Subject:</label>
+                                            <input type="text" class="form-control bg-gray" name="subject" required="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label>Message:</label>
+                                            <textarea class="form-control bg-gray" name="message" rows="8" required=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary" name="submit" type="submit">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5">
+                        <h3 class="down-line mb-5">Get In Touch</h3>
+                        <p>Nullam vel enim risus. Integer rhoncus hendrerit sem egestas porttitor.</p>
+                        <div class="d-flex mb-3">
+                            <ul>
+                                <li class="mb-3">
+                                    <strong>Office Address :</strong><br> Level 13, 2 Elizabeth St, Melbourne, Victoria 3000 Australia
+                                </li>
+                                <li class="mb-3">
+                                    <strong>Contact Number :</strong><br> (1) 000 991 8830, (800) 8001-8588
+                                </li>
+                                <li class="mb-3">
+                                    <strong>Email Address :</strong><br> Info@patron.com, support@patron.com
+                                </li>
+                            </ul>
+                        </div>
+                        <h4 class="mb-2">Career Info</h4>
+                        <p>If you’re interested in employment opportunities at Unicoder, please email us:<br> <a href="#">support@unicoderbd.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Contact Section End ====================-->
+
+
+
+        <!-- ============ footer start ======================= -->
+        <%- include('../partials/footer') %>
+            <!-- ================= footer end ====================== -->
+
+            <!-- Include Scripts -->
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/greensock.js"></script>
+            <script src="/js/layerslider.transitions.js"></script>
+            <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+            <script src="/js/popper.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/owl.carousel.min.js"></script>
+            <script src="/js/wow.js"></script>
+            <script src="/js/jquery.fancybox.min.js"></script>
+            <script src="/js/jquery.countdown.js"></script>
+            <script src="/js/paraxify.js"></script>
+            <script src="/js/custom.js"></script>
+
+            <!-- Initializing the slider -->
+            <script>
+                $(document).ready(function () {
+                    $('#slider').layerSlider({
+                        sliderVersion: '6.0.0',
+                        type: 'responsive',
+                        responsiveUnder: 0,
+                        maxRatio: 1,
+                        hideUnder: 0,
+                        hideOver: 100000,
+                        skin: 'v6',
+                        navStartStop: false,
+                        skinsPath: '/skins/',
+                        height: 960
+                    });
+                });
+            </script>
+
+            <!-- use for map style -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPZ-Erd-14Vf2AoPW2Pzlxssf6-2R3PPs"></script>
+    <script src="js/map.scripts.js"></script>
+    <script>
+        (function($) {
+            var _latitude = 36.596165;
+            var _longitude = -97.062988;
+            init(_latitude, _longitude);
+        })(jQuery);
+    </script>
+
+
+</body>
+
+</html>

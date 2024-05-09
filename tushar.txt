@@ -1,0 +1,105 @@
+const stripe = require('stripe')('sk_test_51P93FaSFBSE2XlqfIyzlbiIt1dI5Igxf3oUV9ycRwMptVFuXl99bb7NfQVG0ShCMoLqjXzaaqgkkcOCSwNBfbwtW00Dyx7zxLU');
+const Payment = require('../models/paymentModel');
+const User = require('../models/userModel');
+const Product = require('../models/productModel');
+
+exports.payment = async (req, res) => {
+    try {
+        const { userID, amount, email, products, productNames, productQuantities } = req.body;
+
+        // Fetch user's cart products
+        const user = await User.findById(userID).populate('cart.product');
+        const cartProducts = user.cart.map(item => ({
+            productID: item.product._id,
+            quantity: item.quantity,
+        }));
+
+        const line_items = products.map(async (productID, index) => {
+            // Fetch the product from the seller_product collection
+            const product = await Product.findById(productID);
+
+            // If the product is found, construct the line item
+            if (product) {
+                return {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: product.product_name,
+                        },
+                        unit_amount: parseInt(product.product_price) * 100,
+                    },
+                    quantity: productQuantities[index],
+                };
+            } else {
+                throw new Error('Product not found');
+            }
+        });
+
+        const resolvedLineItems = await Promise.all(line_items);
+
+        // Create a new payment session with Stripe
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: resolvedLineItems,
+            mode: 'payment',
+            success_url: 'http://localhost:3000/thankyou?payment=success', // Add payment success query parameter
+            cancel_url: 'http://localhost:3000?payment=cancel', // Add payment cancel query parameter
+            customer_email: email,
+        });
+
+        // Create a new payment document and save it
+        const payment = new Payment({
+            userID: userID,
+            amount: amount,
+            products: cartProducts,
+        });
+        await payment.save();
+
+        // Redirect the user to the payment session URL
+        res.redirect(session.url);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error processing payment');
+    }
+};
+
+
+thank you controler code:-
+
+exports.thankyou = async (req, res) => {
+    try {
+        const userID = req.session.user._id;
+        const paymentStatus = req.query.payment;
+        const user = await User.findById(userID);
+
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        if (paymentStatus === 'success') {
+            // Payment was successful
+            // Clear the user's cart here
+            if (!user.cart) {
+                throw new Error('Cart not found');
+            }
+
+            // Clear the user's cart
+            user.cart = [];
+            
+            // Save the updated user with cleared cart
+            await user.save();
+
+            res.render('thankyou', { user: user, paymentStatus: 'success' });
+        } else if (paymentStatus === 'cancel') {
+            // Payment was canceled
+            res.render('thankyou', { user: user, paymentStatus: 'cancel' });
+        } else {
+            // No payment status provided or unknown status
+            res.status(400).send('Invalid payment status');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error processing payment');
+    }
+};

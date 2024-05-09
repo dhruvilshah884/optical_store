@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Shop</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+
+
+</head>
+
+<body>
+    <!-- ==============header start================= -->
+    <%- include('../partials/header') %>
+        <!-- =====================header end===================== -->
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light overlay-dark py-5"
+            style="background-image: url(images/background/4.png); background-position: center center; background-size: cover;">
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-12">
+                        <h3 class="mb-2 text-primary">Shop</h3>
+                    </div>
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+
+        <!-- =================Shop Contents start================= -->
+
+        <div class="full-row pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div
+                            class="products-header d-flex justify-content-between align-items-center py-10 px-20 bg-light md-mt-30">
+                            <div class="products-header-left d-flex align-items-center">
+                                <h6 class="woocommerce-products-header__title page-title">
+                                    <!-- search  -->
+                                    <form method="get" class="form-inline">
+                                        <div class="input-group">
+                                            <input type="search" name="search" id="" class="form-control border mr-sm-2"
+                                                placeholder="Search">
+                                            <div class="input-group-append">
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-sm my-2 my-sm-0">Search</button>
+                                            </div>
+                                        </div>
+
+                                </h6>
+                            </div>
+                            <div class="products-header-right">
+                                <div class="product-show">
+                                    <span class="h6 font-500 text-secondary mb-0">Show:</span>
+                                    <select id="show-number" name="number" class="show-number custom-select">
+                                        <option value="5">5</option>
+                                        <option value="10" selected="selected">10</option>
+                                        <option value="15">15</option>
+                                    </select>
+                                    <!-- </form> -->
+                                </div>
+                                <!-- <form class="woocommerce-ordering form-inline" method="get"> -->
+                                <select name="product_category" class="orderby custom-select" aria-label="Shop order">
+                                    <option value="product_name" selected="selected">Default Searching</option>
+                                    <option value="product_name">Search by Product Name</option>
+                                    <option value="tags">Search by Product Category</option>
+
+                                </select>
+
+                                </form>
+                                <div class="products-view">
+                                    <a class="grid-view" data-shopview="grid-view" href="shop-grid-full.html"><i
+                                            class="flaticon-menu-1 flat-mini"></i></a>
+                                    <a class="list-view active" data-shopview="list-view" href="shop-list-full.html"><i
+                                            class="flaticon-list flat-mini"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="showing-products pt-30 pb-50 border-2 border-bottom border-light">
+                            <div
+                                class="row row-cols-xl-5 row-cols-md-3 row-cols-sm-2 row-cols-1 product-style-3 e-hover-image-zoom e-image-bg-light g-4">
+                                <!-- dynamic data start  -->
+                                <% product.forEach((data)=> { %>
+                                    <div class="col">
+                                        <div class="product type-product">
+                                            <div class="product-wrapper">
+                                                <div class="product-image">
+                                                    <a href="/view/<%= data._id %>"
+                                                        class="woocommerce-LoopProduct-link"><img
+                                                            src="uploads/<%= data.product_image1 %>"
+                                                            alt="Product Image"></a>
+
+                                                    <div class="product-labels">
+                                                        <div class="shape1-badge3"><span>New</span></div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-info">
+
+                                                    <h3 class="product-title"><a href="/view/<%= data._id %>">
+                                                            <%= data.product_name %>
+                                                        </a></h3>
+                                                    <div class="product-price">
+                                                        <div class="price">
+                                                            <ins>₹<%= data.product_price %></ins>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="shipping-feed-back">
+                                                        <div class="star-rating">
+                                                            <div class="rating-wrap">
+                                                                <a href="#"><i class="fas fa-star"></i><span>
+                                                                        <%= data.product_rating %>
+                                                                    </span></a>
+                                                            </div>
+                                                            <div class="rating-counts-wrap">
+                                                                <a href="#">(<%= data.product_quantity %>)</a>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                                        <!-- dynamic data end  -->
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center pt-3">
+                            <div class="showing-result"></div>
+                            <div class="pagination-style-one">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                        <!-- previous page  -->
+                                        <li class="page-item <%= page == 1 ? 'disabled' : '' %>">
+                                            <a class="page-link" href="?page=<%= page - 1 %>" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <!-- previous page end  -->
+                                        <% for(let i=1; i<=total; i++){ %>
+                                            <li class="page-item <%= i == page ? 'active' : '' %>">
+                                                <a class="page-link" href="?page=<%= i %>">
+                                                    <%= i %>
+                                                </a>
+                                            </li>
+                                            <% } %>
+                                                <!-- next page  -->
+                                                <li class="page-item <%= page == total ? 'disabled' : '' %>">
+                                                    <a class="page-link" href="?page=<%= page + 1 %>" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                </li>
+                                                <!-- next page end  -->
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =================Shop Contents end================= -->
+
+
+        <!-- ============ footer start ======================= -->
+        <%- include('../partials/footer') %>
+            <!-- ================= footer end ====================== -->
+
+            <!-- Include Scripts -->
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/greensock.js"></script>
+            <script src="/js/layerslider.transitions.js"></script>
+            <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+            <script src="/js/popper.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/owl.carousel.min.js"></script>
+            <script src="/js/wow.js"></script>
+            <script src="/js/jquery.fancybox.min.js"></script>
+            <script src="/js/jquery.countdown.js"></script>
+            <script src="/js/paraxify.js"></script>
+            <script src="/js/custom.js"></script>
+
+            <!-- Initializing the slider -->
+            <script>
+                $(document).ready(function () {
+                    $('#slider').layerSlider({
+                        sliderVersion: '6.0.0',
+                        type: 'responsive',
+                        responsiveUnder: 0,
+                        maxRatio: 1,
+                        hideUnder: 0,
+                        hideOver: 100000,
+                        skin: 'v6',
+                        navStartStop: false,
+                        skinsPath: '/skins/',
+                        height: 960
+                    });
+                });
+            </script>
+
+
+
+
+</body>
+
+</html>

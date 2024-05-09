@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Add Product</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+    <style>
+        .section-margin {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        
+        .form-group input[type="text"]:hover,
+        .form-group input[type="number"]:hover,
+        .form-group select:hover {
+            border-color: #007bff;
+        }
+
+        
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        
+        .btn-primary {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- ==============header start================= -->
+    <%- include('../partials/header') %>
+        <!-- =====================header end===================== -->
+
+        <!-- Breadcrumb -->
+        <div class="full-row bg-light overlay-dark py-5"
+            style="background-image: url(images/background/4.png); background-position: center center; background-size: cover;">
+            <div class="container">
+                <div class="row text-center text-white">
+                    <div class="col-12">
+                        <h3 class="mb-2 text-primary">Add Products</h3>
+                    </div>
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Add Products</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+
+        <!-- Add Product Form -->
+
+        <div class="full-row">
+            <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+                <div class="row">
+                    <div class="col">
+                        <div class="woocommerce" style="border: 2px solid #6c757d; border-radius: 10px; padding: 20px;">
+                            <div class="row">
+                                <div class="col-lg-10 col-md-12 mx-auto">
+                                    <div class="registration-form">
+                                        <h3>Add Product</h3>
+                                        <form method="post" id="product_form" action="/addProduct" enctype="multipart/form-data">
+                                            <!-- Product Area -->
+                                            <div
+                                                style="border-bottom: 2px solid #6c757d; padding-bottom: 20px; margin-bottom: 20px;">
+                                                <label><b>Product Area</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="product_name">Product Name <span
+                                                                    class="required">*</span></label>
+                                                            <input type="text" class="form-control" id="product_name"
+                                                                name="product_name" placeholder="Enter product name"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="product_price">Product Price <span
+                                                                    class="required">*</span></label>
+                                                            <input type="number" class="form-control" id="product_price"
+                                                                name="product_price" placeholder="Enter product price"
+                                                                required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="product_star">Product Star</label>
+                                                            <select class="form-control" id="product_star" name="product_star">
+                                                                <option value="1">1 ★</option>
+                                                                <option value="2">2 ★</option>
+                                                                <option value="3">3 ★</option>
+                                                                <option value="4">4 ★</option>
+                                                                <option value="5">5 ★</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="discount">Discount</label>
+                                                            <input type="number" class="form-control" id="discount"
+                                                                name="discount" placeholder="Enter discount">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="bank_offer">Bank Offer</label>
+                                                            <input type="text" class="form-control" id="bank_offer"
+                                                                name="bank_offer" placeholder="Enter bank offer">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="seller_brand_logo">Seller Brand Logo</label>
+                                                            <input type="file" class="form-control-file"
+                                                                id="seller_brand_logo" name="seller_brand_logo">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Add Product Image Fields -->
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="product_image1">Product Image 1</label>
+                                                            <input type="file" class="form-control-file" id="product_image1"
+                                                                name="product_image1">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="product_image2">Product Image 2</label>
+                                                            <input type="file" class="form-control-file" id="product_image2"
+                                                                name="product_image2">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="product_image3">Product Image 3</label>
+                                                            <input type="file" class="form-control-file" id="product_image3"
+                                                                name="product_image3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- Poster Section -->
+                                            <div
+                                                style="border-bottom: 2px solid #6c757d; padding-bottom: 20px; margin-bottom: 20px;">
+                                                <label><b>Poster Section</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="roduct_start">Product Rating</label>
+                                                            <input type="text" class="form-control" id="Product_star"
+                                                                name="product_rating" placeholder="Enter Product Rating like 3.85 out of 5">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Product_quantity">Product Quantity</label>
+                                                            <input type="number" class="form-control" id="Product_quantity"
+                                                                name="product_quantity" placeholder="Enter Product quantity">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Product_sold">Product Sold</label>
+                                                            <input type="number" class="form-control" id="Product_sold"
+                                                                name="product_sold" placeholder="Enter Product sold">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Product_original_price">Product Original
+                                                                Price</label>
+                                                            <input type="number" class="form-control"
+                                                                id="Product_original_price" name="product_original_price"
+                                                                placeholder="Enter Product original price">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- Services Area -->
+                                            <div
+                                                style="border-bottom: 2px solid #6c757d; padding-bottom: 20px; margin-bottom: 20px;">
+                                                <label><b>Services Area</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="return_policy_day">Return Policy Day</label>
+                                                            <input type="number" class="form-control" id="return_policy_day"
+                                                                name="return_policy_day" placeholder="Enter return policy day">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="cash_on_delivery">Cash on Delivery
+                                                                Available</label>
+                                                            <select class="form-control" id="cash_on_delivery"
+                                                                name="cash_on_delivery">
+                                                                <option value="yes">Yes</option>
+                                                                <option value="no">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="free_delivery">Free Delivery</label>
+                                                            <select class="form-control" id="free_delivery"
+                                                                name="free_delivery">
+                                                                <option value="yes">Yes</option>
+                                                                <option value="no">No</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- Highlight Area -->
+                                            <div
+                                                style="border-bottom: 2px solid #6c757d; padding-bottom: 20px; margin-bottom: 20px;">
+                                                <label><b>Highlight Area</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="brand_name">Brand Name</label>
+                                                            <input type="text" class="form-control" id="brand_name"
+                                                                name="brand_name" placeholder="Enter brand name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="frame_colour">Frame Colour</label>
+                                                            <select class="form-control" id="frame_colour"
+                                                                name="frame_colour">
+                                                                <option value="white">White</option>
+                                                                <option value="black">Black</option>
+                                                                <option value="gold">Gold</option>
+                                                                <option value="grey">Grey</option>
+                                                                <option value="blue">Blue</option>
+                                                                <option value="pink">Pink</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="frame_size">Frame Size</label>
+                                                            <input type="text" class="form-control" id="frame_size"
+                                                                name="frame_size" placeholder="Enter frame size">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="frame_width">Frame Width</label>
+                                                            <input type="text" class="form-control" id="frame_width"
+                                                                name="frame_width" placeholder="Enter frame width">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="frame_dimensions">Frame Dimensions</label>
+                                                            <input type="text" class="form-control" id="frame_dimensions"
+                                                                name="frame_dimensions" placeholder="Enter frame dimensions">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="frame_shape">Frame Shape</label>
+                                                            <select class="form-control" id="frame_shape"
+                                                                name="frame_shape">
+                                                                <option value="square">Square</option>
+                                                                <option value="rectangle">Rectangle</option>
+                                                                <option value="circle">Circle</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="category">Category</label>
+                                                            <select class="form-control" id="category" name="category">
+                                                                <option value="goggles">Goggles</option>
+                                                                <option value="sunglasses">Sunglasses</option>
+                                                                <option value="fancyglasses">Fancyglasses</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="tags">Tags</label>
+                                                            <select class="form-control" id="tags" name="tags">
+                                                                <option value="man">Man</option>
+                                                                <option value="women">Women</option>
+                                                                <option value="children">Children</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+        
+                                            <!-- Additional Information Area -->
+                                            <div>
+                                                <label><b>Additional Information Area</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="model_no">Model No</label>
+                                                            <input type="text" class="form-control" id="model_no"
+                                                                name="model_no" placeholder="Enter model no">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="item_weight">Item Weight</label>
+                                                            <input type="text" class="form-control" id="item_weight"
+                                                                name="item_weight" placeholder="Enter item weight">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="weight_group">Weight Group</label>
+                                                            <select class="form-control" id="weight_group" name="weight_group">
+                                                                <option value="average">Average</option>
+                                                                <option value="heavy">Heavy</option>
+                                                                <option value="light">Light</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="material">Material</label>
+                                                            <input type="text" class="form-control" id="material"
+                                                                name="material" placeholder="Enter material">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="prescription_type">Prescription Type</label>
+                                                            <select class="form-control" id="prescription_type"
+                                                                name="prescription_type">
+                                                                <option value="Night Vision Goggle">Night Vision Goggle
+                                                                </option>
+                                                                <option value="Thermal Imaging Goggles">Thermal Imaging
+                                                                    Goggles</option>
+                                                                <option value="Augmented Reality (AR) Goggles">Augmented
+                                                                    Reality (AR) Goggles</option>
+                                                                <option value="Virtual Reality (VR) Goggles">Virtual
+                                                                    Reality (VR) Goggles</option>
+                                                                <option value="Underwater Goggles">Underwater Goggles
+                                                                </option>
+                                                                <option value="Sports Goggles">Sports Goggles</option>
+                                                                <option value="Medical Goggles">Medical Goggles</option>
+                                                                <option value="Chemical Goggles">Chemical Goggles
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- submit button -->
+                                            <p class="text-center">
+                                                <button type="submit" class="btn btn-primary rounded-0" name="register"
+                                                    value="Submit">Submit</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- /Add Product Form -->
+
+
+        <!-- ============ footer start ======================= -->
+        <%- include('../partials/footer') %>
+            <!-- ================= footer end ====================== -->
+
+            <!-- Include Scripts -->
+            <script src="/js/jquery.min.js"></script>
+            <script src="/js/greensock.js"></script>
+            <script src="/js/layerslider.transitions.js"></script>
+            <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+            <script src="/js/popper.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script src="/js/owl.carousel.min.js"></script>
+            <script src="/js/wow.js"></script>
+            <script src="/js/jquery.fancybox.min.js"></script>
+            <script src="/js/jquery.countdown.js"></script>
+            <script src="/js/paraxify.js"></script>
+            <script src="/js/custom.js"></script>
+
+            <!-- Initializing the slider -->
+            <script>
+                $(document).ready(function () {
+                    $('#slider').layerSlider({
+                        sliderVersion: '6.0.0',
+                        type: 'responsive',
+                        responsiveUnder: 0,
+                        maxRatio: 1,
+                        hideUnder: 0,
+                        hideOver: 100000,
+                        skin: 'v6',
+                        navStartStop: false,
+                        skinsPath: '/skins/',
+                        height: 960
+                    });
+                });
+            </script>
+
+
+</body>
+
+</html>

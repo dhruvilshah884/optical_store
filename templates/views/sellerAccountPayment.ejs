@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Seller Account Payment</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+
+
+</head>
+
+<body>
+
+
+    <!-- breadcrumb -->
+    <div class="full-row bg-light py-5">
+        <div class="container">
+            <div class="row text-secondary">
+                <div class="col-sm-6">
+                    <h3 class="mb-2 text-secondary">Seller Payment</h3>
+                </div>
+                <div class="col-sm-6">
+                    <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                        <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                            <li class="breadcrumb-item"><a href="/"><i class="fas fa-home me-1"></i>Home</a></li>
+                            <li class="breadcrumb-item"><a href="/login">Login</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Seller Payment</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
+
+    <!-- ============Payment form =============== -->
+
+    <div class="full-row">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="woocommerce">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-8 col-12 mx-auto">
+                                <div class="registration-form">
+                                    <h3>Account Creation Payment</h3>
+                                    <form method="post" action="/seller-ac-pay">
+                                        <p>
+                                            <label for="reg_email">Email:&nbsp;<span class="required">*</span></label>
+                                            <input type="text" class="form-control" value="<%= user.email %>" name="email" readonly>
+                                        </p>
+                                        <% let
+                                            publisher_key='pk_test_51P93FaSFBSE2Xlqfn1veDH4ulBSeVR7Zoy4oXyNAcuce4RdH1gOnBOMmAmOJ6NlDTNc2DTd027RAufC4fnMevA7400Yykjd1dc'
+                                            %>
+                                            <input type="hidden" name="pub_key" value="<%= publisher_key %>">
+                                            <p>
+                                                <button type="submit" class="btn btn-primary rounded-0" name="register"
+                                                    value="Login">Pay</button>
+                                            </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================Payment end =================== -->
+
+
+    <!-- ============ footer start ======================= -->
+    <%- include('../partials/footer') %>
+        <!-- ================= footer end ====================== -->
+
+        <!-- Include Scripts -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/greensock.js"></script>
+        <script src="/js/layerslider.transitions.js"></script>
+        <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/owl.carousel.min.js"></script>
+        <script src="/js/wow.js"></script>
+        <script src="/js/jquery.fancybox.min.js"></script>
+        <script src="/js/jquery.countdown.js"></script>
+        <script src="/js/paraxify.js"></script>
+        <script src="/js/custom.js"></script>
+
+        <!-- Initializing the slider -->
+        <script>
+            $(document).ready(function () {
+                $('#slider').layerSlider({
+                    sliderVersion: '6.0.0',
+                    type: 'responsive',
+                    responsiveUnder: 0,
+                    maxRatio: 1,
+                    hideUnder: 0,
+                    hideOver: 100000,
+                    skin: 'v6',
+                    navStartStop: false,
+                    skinsPath: '/skins/',
+                    height: 960
+                });
+            });
+        </script>
+
+
+</body>
+
+</html>

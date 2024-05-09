@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tag -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="BigBazar - Multipurpose Ecommerce HTML Template">
+
+    <meta name="author" content="root">
+    <title>BigBazar - Users Report</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.png">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!--  CSS Style -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/animate.min.css">
+    <link rel="stylesheet" href="/webfonts/flaticon/flaticon.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/layerslider.css">
+    <link rel="stylesheet" href="/css/template.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/category/optical-shop.css">
+
+    <style>
+
+        form {
+        width: 400px;
+        margin: auto;
+        }
+
+        .total-label {
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: -20px;
+        }
+    </style>
+    
+
+</head>
+
+<body>
+    
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light py-5">
+            <div class="container">
+                <div class="row text-secondary">
+                    <div class="col-sm-6">
+                        <h3 class="mb-2 text-secondary">Products Report</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="/admin"><i
+                                            class="fas fa-home me-1"></i>Home</a></li>
+                                <li class="breadcrumb-item"><a href="/report">Users Report</a></li>
+                                <li class="breadcrumb-item"><a href="/contactreport">Contact Report</a></li>
+                                <li class="breadcrumb-item"><a href="/paymentreport">Payment Report</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Products Report</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+         <!-- searching form start -->
+         <form class="mt-4 mb-4" action="/productreport" method="get">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="startDate" class="form-label">Start Date:</label>
+                            </td>
+                            <td>
+                                <input type="date" class="form-control" name="startDate" id="startDate" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="endDate" class="form-label">End Date:</label>
+                            </td>
+                            <td>
+                                <input type="date" class="form-control" name="endDate" id="endDate" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-primary w-100">Search</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <!-- searching form end -->
+
+        <label class="total-label" for="Total">Total: <%= count %> </label>
+
+        <!-- table start  -->
+
+        <table class="table table-striped table-bordered">
+            <thead class="bg-primary text-secondary">
+                <tr>
+                    <th class="align-middle text-center">Product Name</th>
+                    <th class="align-middle text-center">Product Image</th>
+                    <th class="align-middle text-center">Amount</th>
+                    <th class="align-middle text-center">Quantity</th>
+                    
+                    <th class="align-middle text-center">Create By</th>
+                    <th class="align-middle text-center" style="border-bottom: 1px solid #dee2e6;">Upload Date</th>
+                    <th colspan="2" class="align-middle text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach((data) => { %>
+                    <tr>
+                        <td class="align-middle text-center"><%= data.product_name %></td>
+                        <td class="align-middle text-center"><img src="uploads/<%= data.product_image1 %>" alt="Product Image" style="max-height: 100px;"></td>
+                        <td class="align-middle text-center"><%= data.product_price %></td>
+                        <td class="align-middle text-center"><%= data.product_quantity %></td>
+                        
+                        <td class="align-middle text-center"><%= data.createBy.username %></td>
+                        <td class="align-middle text-center"><%= data.upload_date.toDateString() %></td>
+                        <td class="align-middle" style="border-bottom: 1px solid #dee2e6;"><a href="/edit/<%= data._id %>"><button class="btn btn-outline-primary border border-primary rounded">Edit</button></a></td>
+                        <td class="align-middle" style="border-bottom: 1px solid #dee2e6;"><a href="/delete/<%= data._id %>"><button class="btn btn-outline-danger border border-danger rounded">Delete</button></a></td>
+                        
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+        
+        
+        
+
+        <!-- table end  -->
+
+
+         <!-- ============ footer start ======================= -->
+         <%- include('../partials/footer') %>
+         <!-- ================= footer end ====================== -->
+
+         <!-- Include Scripts -->
+         <script src="/js/jquery.min.js"></script>
+         <script src="/js/greensock.js"></script>
+         <script src="/js/layerslider.transitions.js"></script>
+         <script src="/js/layerslider.kreaturamedia.jquery.js"></script>
+         <script src="/js/popper.min.js"></script>
+         <script src="/js/bootstrap.min.js"></script>
+         <script src="/js/owl.carousel.min.js"></script>
+         <script src="/js/wow.js"></script>
+         <script src="/js/jquery.fancybox.min.js"></script>
+         <script src="/js/jquery.countdown.js"></script>
+         <script src="/js/paraxify.js"></script>
+         <script src="/js/custom.js"></script>
+
+         <!-- Initializing the slider -->
+         <script>
+             $(document).ready(function () {
+                 $('#slider').layerSlider({
+                     sliderVersion: '6.0.0',
+                     type: 'responsive',
+                     responsiveUnder: 0,
+                     maxRatio: 1,
+                     hideUnder: 0,
+                     hideOver: 100000,
+                     skin: 'v6',
+                     navStartStop: false,
+                     skinsPath: '/skins/',
+                     height: 960
+                 });
+             });
+         </script>
+
+
+</body>
+
+</html>

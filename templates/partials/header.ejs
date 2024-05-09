@@ -1,0 +1,95 @@
+<!--==================== Header Section Start ====================-->
+<header class="ecommerce-header bg-white p-0">
+    <div class="top-header d-none d-lg-block py-2 border-0 font-400">
+        <div class="container-lg-fluid px-lg-5">
+            <div class="row align-items-center">
+                <div class="col-lg-4 sm-mx-none">
+                </div>
+                <div class="col-lg-8 d-flex">
+                    <ul class="top-links d-flex ms-auto align-items-center">
+                        <% if (!user) { %>
+                            <li><a href="/signup-seller">Become Seller</a></li>
+                        <% } else { %>
+                            <li><a></a></li>
+                        <% } %>
+                        
+                        <li><a href="#">FAQ</a></li>
+                        <% if (user && user.role === 'User') { %>
+                            <li><a href="/cart">Cart</a></li>
+                        <% } else { %>
+                            <li><a></a></li>
+                        <% } %>
+                        
+                        <li class="my-account-dropdown">
+                            <a href="/account">My Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-nav py-4 d-none d-lg-block">
+        <div class="container-fluid px-lg-5">
+            <div class="row">
+                <div class="col-xl-7 col-md-9">
+                    <nav class="navbar navbar-expand-lg nav-dark nav-primary-hover nav-line-active">
+                        <a class="navbar-brand" href="/"><img class="nav-logo" src="/images/logo/12.png" alt="Image not found !"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="flaticon-menu-2 flat-small text-primary"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ms-lg-5">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/">Home</a>
+                                </li>
+                                <li class="nav-item dropdown mega-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/about">About us</a>
+                                </li>
+
+                                <% if (user && user.role === 'Seller') { %>
+                                    <li><a></a></li>
+                                <% } else { %>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="/shop">Shop</a>
+                                    </li>
+                                <% } %>
+                                
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/blog">Blog</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/contact">Contact</a>
+                                </li>
+
+                                <% if (!user) { %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/signup">Register</a>
+                                    </li>
+                                <% } else { %>
+                                    <li><a></a></li>
+                                <% } %>
+                                
+                                <% if (user && user.role === 'Seller') { %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/addProduct">AddProducts</a>
+                                    </li>
+                                <% } else { %>
+                                    <li></li>
+                                <% } %>
+                                
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="text-end">
+                    <% if (typeof user !== 'undefined' && user && user.username) { %>
+                        Hello, <b><span style="color: #33C6CC;"><%= user.username %></span></b>
+                    <% } else { %>
+                        Hello, Visitor
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--==================== Header Section End ====================-->
